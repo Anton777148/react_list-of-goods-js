@@ -19,15 +19,15 @@ const SORT_BY_ALPHABET = 'alphabet';
 const SORT_BY_LENGTH = 'length';
 
 export const App = () => {
-  const [sortfiled, setSortfiled] = useState('');
+  const [sortFiled, setSortFiled] = useState('');
   const [isReversed, setIsReversed] = useState(false);
 
-  const visibileGoods = [...goodsFromServer].sort((a, b) => {
-    if (sortfiled === SORT_BY_ALPHABET) {
+  const visibleGoods = [...goodsFromServer].sort((a, b) => {
+    if (sortFiled === SORT_BY_ALPHABET) {
       return a.localeCompare(b);
     }
 
-    if (sortfiled === SORT_BY_LENGTH) {
+    if (sortFiled === SORT_BY_LENGTH) {
       return a.length - b.length;
     }
 
@@ -35,7 +35,7 @@ export const App = () => {
   });
 
   if (isReversed) {
-    visibileGoods.reverse();
+    visibleGoods.reverse();
   }
 
   return (
@@ -43,16 +43,16 @@ export const App = () => {
       <div className="buttons">
         <button
           type="button"
-          className={`button is-info ${sortfiled === SORT_BY_ALPHABET ? '' : 'is-light'}`}
-          onClick={() => setSortfiled(SORT_BY_ALPHABET)}
+          className={`button is-info ${sortFiled === SORT_BY_ALPHABET ? '' : 'is-light'}`}
+          onClick={() => setSortFiled(SORT_BY_ALPHABET)}
         >
           Sort alphabetically
         </button>
 
         <button
           type="button"
-          className={`button is-success ${sortfiled === SORT_BY_LENGTH ? '' : 'is-light'}`}
-          onClick={() => setSortfiled(SORT_BY_LENGTH)}
+          className={`button is-success ${sortFiled === SORT_BY_LENGTH ? '' : 'is-light'}`}
+          onClick={() => setSortFiled(SORT_BY_LENGTH)}
         >
           Sort by length
         </button>
@@ -65,12 +65,12 @@ export const App = () => {
           Reverse
         </button>
 
-        {(sortfiled || isReversed) && (
+        {(sortFiled || isReversed) && (
           <button
             type="button"
             className="button is-danger is-light"
             onClick={() => {
-              setSortfiled('');
+              setSortFiled('');
               setIsReversed(false);
             }}
           >
@@ -80,7 +80,7 @@ export const App = () => {
       </div>
 
       <ul>
-        {visibileGoods.map(good => (
+        {visibleGoods.map(good => (
           <li key={good} data-cy="Good">
             {good}
           </li>
